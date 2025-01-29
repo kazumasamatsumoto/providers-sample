@@ -68,7 +68,11 @@ export class CatsService {
   }
 
   findOne(name: string): Cat {
-    return this.cats.find((cat) => cat.name === name);
+    const cat = this.cats.find((cat) => cat.name === name);
+    if (!cat) {
+      throw new Error(`Cat ${name} not found`);
+    }
+    return cat;
   }
 }
 ```
